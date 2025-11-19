@@ -1,0 +1,135 @@
+/* Container geral */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #8cff8c;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #004d26;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    min-height: 70px;
+    max-height: 50px;
+}
+header h1 {
+    margin: 0;
+    color: white;
+}
+.logo img {
+    height: 200px;
+}
+
+.home-btn {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.header button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Botão de expandir */
+.btn-expand {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #106324;
+  color: white;
+  cursor: pointer;
+}
+
+.btt_submti {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #229e3f;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-expand:hover {
+  background-color: #218838;
+}
+
+/* Formulário inicialmente escondido */
+.hidden {
+  display: none;
+}
+
+/* Formulário */
+#formComentario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* espaçamento entre campos */
+}
+
+#formComentario label {
+  font-weight: bold;
+  color: #555;
+}
+
+#formComentario input,
+#formComentario textarea,
+#formComentario select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#formComentario textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+#formComentario button[type="submit"] {
+  padding: 12px;
+  background-color: #27b824;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#formComentario button[type="submit"]:hover {
+  background-color: #199009;
+}
+
+/* Meus comentários */
+#meusComentarios {
+  margin-top: 30px;
+}
+
+.feedback {
+  background-color: #f1f1f1;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Comentários</title>
+  <link rel="stylesheet" href="css/style3.css" />
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo">
+            <a href="index.html"><img src="imagens/logo.png" alt="Logo Biblioteca Viva IFRO"></a>
+    </div>
+    <h1>Aba individual de comentários</h1>
+    <div class="header-right">
+      <button onclick="window.location.href='index.html'" class="home-btn">Home</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Botão para mostrar o formulário -->
+    <button id="btnAdicionarComentario" class="btn-expand">📝 Adicionar Novo Comentário</button>
+
+    <!-- Formulário inicialmente escondido -->
+    <form id="formComentario">
+      <label for="titulo">Nome do Livro:</label>
+      <input type="text" id="titulo" required />
+
+      <label for="autor">Autor:</label>
+      <input type="text" id="autor" required />
+
+      <label for="usuario">Seu nome:</label>
+      <input type="text" id="usuario" required />
+
+      <label for="comentario">Comentário:</label>
+      <textarea id="comentario" required></textarea>
+
+      <label for="nivel">Classificação:</label>
+      <select id="nivel" required>
+        <option value="1">Muito ruim</option>
+        <option value="2">Ruim</option>
+        <option value="3">Mediano</option>
+        <option value="4">Bom</option>
+        <option value="5">Muito bom</option>
+      </select>
+
+      <button type="submit" class="btt_submti">Salvar Comentário</button>
+    </form>
+
+    <div id="meusComentarios">
+      <h2>💬 Meus Comentários</h2>
+      <div id="listaComentarios"></div>
+    </div>
+  </div>
+
+  <script src="js/catalogo.js"></script>
+  <script src="js/formulario.js"></script>
+</body>
+</html>

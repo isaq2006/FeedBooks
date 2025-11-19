@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Avaliações</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+            <a href="index.html"><img src="imagens/logo.png" alt="Logo Biblioteca Viva IFRO"></a>
+    </div>
+    <h1>Catálogo de Avaliações</h1>
+    <div class="header-right">
+      <button onclick="window.location.href='index.html'" class="home-btn">Home</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Digite o nome do livro..." oninput="filtrarLivros()">
+    </div>
+    <div id="listaLivros" class="lista-livros"></div>
+  </main>
+
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

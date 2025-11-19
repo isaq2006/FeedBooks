@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #8cff8c;
+}
+
+header {
+    background-color: #004d26;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    min-height: 70px;
+    max-height: 50px;
+}
+
+.logo img {
+    height: 200px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.home-btn {
+    background-color: #b2ffb2;
+    color: #003d1f;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.icon {
+    background-color: #ff3333;
+    border-radius: 50%;
+    padding: 8px;
+    height: 35px;
+    width: 35px;
+}
+
+.intro {
+    background-color: #419241;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    font-size: 1em;
+    text-align: justify;
+}
+
+.content {
+    background-color:  #004d26;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.mascote img {
+    height: 220px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn {
+    background-color:  #419241;
+    color: white;
+    border: none;
+    padding: 15px 60px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #216e21;
+}
+
+.icon-btn {
+    height: 60px;
+    width: 60px;
+    margin-left: 10px;
+}
