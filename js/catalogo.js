@@ -13,7 +13,15 @@ let feedbacks = [
   { livro_id: 3, usuario: "Clara", nivel: 1, comentario: "Não me conectei com os personagens." }
 ];
 
-const niveis = ["Muito ruim", "Ruim", "Mediano", "Bom", "Muito bom"];
+// -----------------------------
+// NOVO: GERADOR DE ESTRELAS ⭐
+// -----------------------------
+function gerarEstrelas(nivel) {
+  const total = 5;
+  const preenchidas = "★".repeat(nivel);
+  const vazias = "☆".repeat(total - nivel);
+  return preenchidas + vazias;
+}
 
 function salvarDados() {
   localStorage.setItem('livros', JSON.stringify(livros));
@@ -31,8 +39,9 @@ carregarDados();
 function calcularMedia(idLivro) {
   const fbs = feedbacks.filter(f => f.livro_id === idLivro);
   if (fbs.length === 0) return "Sem avaliações";
+
   const media = fbs.reduce((acc, f) => acc + f.nivel, 0) / fbs.length;
-  return niveis[Math.round(media) - 1];
+  return gerarEstrelas(Math.round(media));
 }
 
 function renderizarLivros(lista = livros) {
@@ -45,7 +54,7 @@ function renderizarLivros(lista = livros) {
     div.innerHTML = `
       <h3 onclick="toggleFeedback(${livro.id})">${livro.titulo}</h3>
       <p><strong>Autor:</strong> ${livro.autor}</p>
-      <p><strong>Média:</strong> ${calcularMedia(livro.id)}</p>
+      <p><strong>Mais recorrente:</strong> ${calcularMedia(livro.id)}</p>
       <div id="feedbacks-${livro.id}" class="feedback-container"></div>
     `;
     container.appendChild(div);
@@ -62,10 +71,24 @@ function toggleFeedback(idLivro) {
   if (fbs.length === 0) {
     fbContainer.innerHTML = '<p>Sem avaliações disponíveis.</p>';
   } else {
-    let html = '<div class="filter-bar"><select onchange="filtrarFeedbacks(this.value, ' + idLivro + ')"><option value="">Filtrar</option><option value="desc">Melhor ao pior</option><option value="asc">Pior ao melhor</option></select></div>';
+    let html = `
+      <div class="filter-bar">
+        <select onchange="filtrarFeedbacks(this.value, ${idLivro})">
+          <option value="">Filtrar</option>
+          <option value="desc">Melhor ao pior</option>
+          <option value="asc">Pior ao melhor</option>
+        </select>
+      </div>
+    `;
+
     fbs.forEach(fb => {
-      html += `<div class='feedback'><strong>${fb.usuario}</strong> — ${niveis[fb.nivel - 1]}<br>${fb.comentario}</div>`;
+      html += `
+        <div class='feedback'>
+          <strong>${fb.usuario}</strong> — ${gerarEstrelas(fb.nivel)}<br>
+          ${fb.comentario}
+        </div>`;
     });
+
     fbContainer.innerHTML = html;
   }
   fbContainer.style.display = 'block';
@@ -75,11 +98,27 @@ function filtrarFeedbacks(ordem, idLivro) {
   const fbs = feedbacks.filter(f => f.livro_id === idLivro);
   if (ordem === 'asc') fbs.sort((a, b) => a.nivel - b.nivel);
   else if (ordem === 'desc') fbs.sort((a, b) => b.nivel - a.nivel);
+
   const fbContainer = document.getElementById(`feedbacks-${idLivro}`);
-  let html = '<div class="filter-bar"><select onchange="filtrarFeedbacks(this.value, ' + idLivro + ')"><option value="">Filtrar</option><option value="desc">Melhor ao pior</option><option value="asc">Pior ao melhor</option></select></div>';
+
+  let html = `
+    <div class="filter-bar">
+      <select onchange="filtrarFeedbacks(this.value, ${idLivro})">
+        <option value="">Filtrar</option>
+        <option value="desc">Melhor ao pior</option>
+        <option value="asc">Pior ao melhor</option>
+      </select>
+    </div>
+  `;
+
   fbs.forEach(fb => {
-    html += `<div class='feedback'><strong>${fb.usuario}</strong> — ${niveis[fb.nivel - 1]}<br>${fb.comentario}</div>`;
+    html += `
+      <div class='feedback'>
+        <strong>${fb.usuario}</strong> — ${gerarEstrelas(fb.nivel)}<br>
+        ${fb.comentario}
+      </div>`;
   });
+
   fbContainer.innerHTML = html;
 }
 
@@ -91,9 +130,8 @@ function filtrarLivros() {
 
 renderizarLivros();
 
-// ------------------- NOVO: FORMULÁRIO DE COMENTÁRIOS -------------------
+// ------------------- MEUS COMENTÁRIOS -------------------
 
-// Renderiza os comentários do usuário na seção "Meus Comentários"
 function renderizarMeusComentarios(usuario) {
   const container = document.getElementById('listaComentarios');
   if (!container) return;
@@ -109,14 +147,14 @@ function renderizarMeusComentarios(usuario) {
     const livro = livros.find(l => l.id == fb.livro_id);
     container.innerHTML += `
       <div class="feedback">
-        <strong>${livro ? livro.titulo : 'Livro não encontrado'}</strong> — ${niveis[fb.nivel - 1]}<br>
+        <strong>${livro ? livro.titulo : 'Livro não encontrado'}</strong> — ${gerarEstrelas(fb.nivel)}<br>
         ${fb.comentario}
       </div>
     `;
   });
 }
 
-// Captura o submit do formulário
+// FORMULÁRIO
 if (document.getElementById('formComentario')) {
   document.getElementById('formComentario').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -129,26 +167,24 @@ if (document.getElementById('formComentario')) {
 
     if (!titulo || !autor || !usuario || !comentario || !nivel) return;
 
-    // Verifica se o livro já existe
-    let livro = livros.find(l => l.titulo.toLowerCase() === titulo.toLowerCase() && l.autor.toLowerCase() === autor.toLowerCase());
+    let livro = livros.find(l =>
+      l.titulo.toLowerCase() === titulo.toLowerCase() &&
+      l.autor.toLowerCase() === autor.toLowerCase()
+    );
+
     if (!livro) {
-      // Adiciona novo livro
       livro = { id: livros.length ? Math.max(...livros.map(l => l.id)) + 1 : 1, titulo, autor };
       livros.push(livro);
       salvarDados();
     }
 
-    // Adiciona o comentário
     feedbacks.push({ livro_id: livro.id, usuario, nivel, comentario });
     salvarDados();
 
-    // Limpa o formulário
     this.reset();
 
-    // Atualiza a lista de comentários do usuário
     renderizarMeusComentarios(usuario);
 
     alert('Comentário salvo com sucesso!');
   });
 }
-

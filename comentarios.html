@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <title>Cadastro de Comentários</title>
   <link rel="stylesheet" href="css/style3.css" />
+
 </head>
 <body>
   <!-- Cabeçalho -->
   <header>
     <div class="logo">
-            <a href="index.html"><img src="imagens/logo.png" alt="Logo Biblioteca Viva IFRO"></a>
+      <a href="index.html"><img src="imagens/logo.png" alt="Logo Biblioteca Viva IFRO"></a>
     </div>
     <h1>Aba individual de comentários</h1>
     <div class="header-right">
@@ -35,14 +36,18 @@
       <label for="comentario">Comentário:</label>
       <textarea id="comentario" required></textarea>
 
-      <label for="nivel">Classificação:</label>
-      <select id="nivel" required>
-        <option value="1">Muito ruim</option>
-        <option value="2">Ruim</option>
-        <option value="3">Mediano</option>
-        <option value="4">Bom</option>
-        <option value="5">Muito bom</option>
-      </select>
+      <!-- NOVO SISTEMA DE ESTRELAS -->
+      <label>Classificação:</label>
+      <div class="star-rating" id="rating">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+
+      <!-- Valor real da classificação -->
+      <input type="hidden" id="nivel" value="0">
 
       <button type="submit" class="btt_submti">Salvar Comentário</button>
     </form>
@@ -55,5 +60,6 @@
 
   <script src="js/catalogo.js"></script>
   <script src="js/formulario.js"></script>
+  <script src="js/estrelas.js"></script> <!-- NOVO -->
 </body>
 </html>

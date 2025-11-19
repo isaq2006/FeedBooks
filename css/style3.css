@@ -133,3 +133,19 @@ header h1 {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+    /* --- Estrelas do Formulário --- */
+.star-rating {
+  font-size: 30px;
+  cursor: pointer;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.star-rating .filled {
+  color: gold;
+}
+
+.star-rating span {
+  padding: 3px;
+  transition: 0.2s;
+}
